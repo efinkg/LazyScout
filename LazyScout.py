@@ -14,9 +14,12 @@ def setMaxNumber(maxNum):
     maxMatchNumber = maxNum
 
 def deleteOld():
-    os.remove('MatchesIn.csv')
-    os.remove('Teams.csv')
-    os.remove('MatchesToWatch.csv')
+    f = open("MatchesIn.csv", "w+")
+    f.close()
+    f = open("Teams.csv", "w+")
+    f.close()
+    f = open("MatchesToWatch.csv", "w+")
+    f.close()
 
 def findMatches():
     global maxMatchNumber
@@ -70,5 +73,6 @@ def lazyScouts(listOfTeams,minMatch,maxMatch):
                             if teams[i]!=teamofinterest:
                                 writer2.writerow([str(teams[i]) + " in match " + str(row[0])])
 
+deleteOld()
 findMatches()
 findTeamsInLater()
