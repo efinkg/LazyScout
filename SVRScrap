@@ -1,8 +1,0 @@
-from config import timeZone
-import csv
-teamofinterest = "5020"
-
-with open('/Code/JabberBot/users.csv') as csvfile:
-        spamreader = csv.reader(csvfile, delimiter=',')
-        for row in spamreader:
-            print list(row)

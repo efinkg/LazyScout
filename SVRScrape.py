@@ -3,8 +3,6 @@ import csv
 teamofinterest = "613"
 #Be sure to save as a windows csv
 
-writer = csv.writer(open("MatchesIn.csv", "a"))
-writer2 = csv.writer(open("TeamsInMatches.csv", "a"))
 teams = []
 
 def findTeams():
@@ -18,7 +16,9 @@ def findTeams():
                         #print row[i]
                         if row[i] not in teams:
                             teams.append(row[i])
-        writer.writerow(list(teams))
+                            with open("Teams.csv", "a") as writefile:
+                                writer = csv.writer(writefile, delimiter=",")
+                                writer.writerow([row[i]])       
 
 def lazyScouts():
     with open('Regional.csv') as csvfile2:
@@ -26,17 +26,14 @@ def lazyScouts():
         for row in spamreader:
             list(row)
             for i in range (0,len(teams)):
-                #print teams[i]
                 for j in range (1,len(row)-2):
                     if row[j] == teams[i]:
-                        #print row[j]
-                        print (teams[i] + " in match " + row[0])
-                        writer2.writerow(str(teams[i]) + " in match " + str(row[0]))
-                        #if row[0] not in matches:
-                           # matches.append(row[0])
-                            #print matches
-           # writer.writerow(list(matches))
+                        #print (teams[i] + " in match " + row[0])
+                        with open("MatchesToWatch.csv", "a") as writefile2:
+                            writer2 = csv.writer(writefile2, delimiter=" ")
+                            writer2.writerow([str(teams[i]) + " in match " + str(row[0])])
 
+#openFiles()
 findTeams()
 lazyScouts()
 
