@@ -13,7 +13,6 @@ def findTeams():
             for i in range (0,len(row)):
                 if row[i] == teamofinterest:
                     for i in range (1,len(row)-2):
-                        #print row[i]
                         if row[i] not in teams:
                             teams.append(row[i])
                             with open("Teams.csv", "a") as writefile:
@@ -28,12 +27,10 @@ def lazyScouts():
             for i in range (0,len(teams)):
                 for j in range (1,len(row)-2):
                     if row[j] == teams[i]:
-                        #print (teams[i] + " in match " + row[0])
                         with open("MatchesToWatch.csv", "a") as writefile2:
                             writer2 = csv.writer(writefile2, delimiter=" ")
                             writer2.writerow([str(teams[i]) + " in match " + str(row[0])])
 
-#openFiles()
 findTeams()
 lazyScouts()
 
