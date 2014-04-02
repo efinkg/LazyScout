@@ -11,8 +11,8 @@ In LazyScout.py, you can define the team you are interested in watching by team 
 
 Two .csv files will be generated.  
 
-The first is a list of all the teams you will be alliance members with and opponents you will have
+The first, Teams.csv, is a list of all the teams you will be alliance members with and opponents you will have
 
-The second is will output a list of every time one of these teams plays.
+The second, MatchesToWatch.csv, will output a list of every time one of these teams plays.
 
 Now you can be a LazyScout and only watch the relevant teams.
