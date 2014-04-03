@@ -7,11 +7,8 @@ teamofinterest = "613"
 
 teams = []
 lazyScoutsTeamList=[]
-matches = [1]
+matches = [0]
 maxMatchNumber = 0
-
-def setMaxNumber(maxNum):
-    maxMatchNumber = maxNum
 
 def deleteOld():
     f = open("MatchesIn.csv", "w+")
@@ -40,7 +37,7 @@ def findMatches():
 def findTeamsInLater():
     global maxMatchNumber
     for i in range(0, len(matches)):
-        findTeams(matches[i],maxMatchNumber)
+        findTeams(matches[i-1],maxMatchNumber)
         lazyScouts(lazyScoutsTeamList,matches[i-1],matches[i])
 
 def findTeams(minMatch,maxMatch):
@@ -49,29 +46,29 @@ def findTeams(minMatch,maxMatch):
         spamreader = csv.reader(sourcefile, delimiter=',')
         for row in itertools.islice(spamreader,minMatch,maxMatch):
             list(row)
-            for i in range (0,len(row)):
+            for i in range (1,len(row)-2):
                 if row[i] == teamofinterest:
-                    for i in range (1,len(row)-2):
-                        if row[i] not in lazyScoutsTeamList:
-                            lazyScoutsTeamList.append(row[i])
-                        if row[i] not in teams:
-                            teams.append(row[i])
+                    for j in range (1,len(row)-2):
+                        if row[j] not in lazyScoutsTeamList:
+                            lazyScoutsTeamList.append(row[j])
+                        if row[j] not in teams:
+                            teams.append(row[j])
                             with open("Teams.csv", "a") as writefile:
                                 writer = csv.writer(writefile, delimiter=",")
-                                writer.writerow([row[i]])
+                                writer.writerow([row[j]])
 
 def lazyScouts(listOfTeams,minMatch,maxMatch):
     with open('Regional.csv') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',')
         for row in itertools.islice(spamreader,minMatch,maxMatch):
             list(row)
-            for i in range (0,len(listOfTeams)):
-                for j in range (1,len(row)-2):
-                    if row[j] == listOfTeams[i]:
-                        with open("MatchesToWatch.csv", "a") as writefile2:
-                            writer2 = csv.writer(writefile2, delimiter=" ")
-                            if teams[i]!=teamofinterest:
-                                writer2.writerow([str(teams[i]) + " in match " + str(row[0])])
+            for i in range (1,len(row)-2):
+                if row[i] in listOfTeams:
+                    with open("MatchesToWatch.csv", "a") as writefile2:
+                        writer2 = csv.writer(writefile2, delimiter=" ")
+                        if row[i]!=teamofinterest:
+                            writer2.writerow([row[i] + " in match " + str(row[0])])
+
 
 deleteOld()
 findMatches()
