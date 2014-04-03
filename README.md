@@ -2,7 +2,7 @@ LazyScout
 =========
 By using LazyScout you can find all of the alliance members and opponents you will have over the course of a 
 FRC regional, and when they will be playing matches.  The allows you to focus on scouting teams you will be playing
-with.
+with.  LazyScout further helps by giving you a list of only the teams you will be playing with in later matches so you don't spend precious brain bandwidth scouting teams you won't be playing with again.
 
 Start by copying the match listings to a .csv file, this is easiest doen using excel or similar, which will format
 things in a convenient way.  You can save this file to csv (call it Regional.csv).
