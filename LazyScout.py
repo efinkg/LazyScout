@@ -2,7 +2,7 @@ import csv
 import itertools
 import os
 
-teamofinterest = "613"
+teamofinterest = "4990"
 #Be sure to save as a windows csv
 
 teams = []
